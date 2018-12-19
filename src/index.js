@@ -18,10 +18,15 @@ import WebWorkerTemplatePlugin from 'webpack/lib/webworker/WebWorkerTemplatePlug
 import getWorker from './workers/';
 import WorkerLoaderError from './Error';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 export default function loader() {}
 
 export function pitch(request) {
   const options = loaderUtils.getOptions(this) || {};
+  if (isDev) {
+    options.inline = true;
+  }
 
   validateOptions({ name: 'Worker Loader', schema, target: options });
 
