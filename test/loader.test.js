@@ -229,3 +229,16 @@ test('should use the publicPath option as the base URL if specified', () =>
       assert.equal(stats.compilation.missingDependencies.length, 0);
     }));
 });
+
+test('should be SharedWorker with shared option in query', () =>
+  webpack('inline-shared').then((stats) => {
+    const files = stats
+      .toJson()
+      .chunks.map((item) => item.files)
+      .reduce((acc, item) => acc.concat(item), [])
+      .map((item) => `__expected__/inline-shared/${item}`);
+
+    assert.equal(files.length, 1);
+
+    assert.notEqual(readFile(files[0]).indexOf('new SharedWorker'), -1);
+  }));

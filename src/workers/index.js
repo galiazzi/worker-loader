@@ -18,10 +18,10 @@ const getWorker = (file, content, options) => {
 
     return `require(${InlineWorkerPath})(${JSON.stringify(
       content
-    )}, ${fallbackWorkerPath})`;
+    )}, ${fallbackWorkerPath}, ${options.shared})`;
   }
 
-  return `new Worker(${publicWorkerPath})`;
+  return `new ${options.shared ? 'Shared' : ''}Worker(${publicWorkerPath})`;
 };
 
 export default getWorker;

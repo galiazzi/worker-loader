@@ -1,12 +1,11 @@
 {
-  "name": "worker-loader",
-  "version": "2.0.0",
+  "name": "workers-loader",
+  "version": "2.1.0",
   "description": "worker loader module for webpack",
   "license": "MIT",
-  "repository": "webpack-contrib/worker-loader",
-  "author": "Tobias Koppers @sokra",
-  "homepage": "https://github.com/webpack-contrib/worker-loader",
-  "bugs": "https://github.com/webpack-contrib/worker-loader/issues",
+  "repository": "galiazzi/workers-loader",
+  "author": "Dayan C. Galiazzi",
+  "homepage": "https://github.com/galiazzi/workers-loader",
   "bin": "",
   "main": "dist/cjs.js",
   "engines": {

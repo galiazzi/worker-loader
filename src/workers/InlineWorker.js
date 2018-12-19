@@ -2,7 +2,8 @@
 
 var URL = window.URL || window.webkitURL;
 
-module.exports = function (content, url) {
+module.exports = function (content, url, shared) {
+  var worker = shared ? SharedWorker : Worker;
   try {
     try {
       var blob;
@@ -24,15 +25,15 @@ module.exports = function (content, url) {
         blob = new Blob([content]);
       }
 
-      return new Worker(URL.createObjectURL(blob));
+      return new worker(URL.createObjectURL(blob));
     } catch (e) {
-      return new Worker('data:application/javascript,' + encodeURIComponent(content));
+      return new worker('data:application/javascript,' + encodeURIComponent(content));
     }
   } catch (e) {
     if (!url) {
       throw Error('Inline worker is not supported');
     }
 
-    return new Worker(url);
+    return new worker(url);
   }
 };
