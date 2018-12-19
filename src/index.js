@@ -53,9 +53,9 @@ export function pitch(request) {
     namedChunkFilename: null,
   };
 
-  //   if (options.shared) {
-  //     worker.options.globalScope = 'self';
-  //   }
+  if (options.shared) {
+    worker.options.globalObject = 'self';
+  }
 
   worker.compiler = this._compilation.createChildCompiler(
     'worker',
